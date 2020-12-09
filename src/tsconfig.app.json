@@ -1,15 +1,19 @@
 {
-    "extends": "../tsconfig.json",
-    "compilerOptions": {
-        "outDir": "../out-tsc/app",
-        "lib": ["es6", "dom"],
-        "types": []
-    },
-  "files": [
-    "main.ts",
-    "polyfills.ts"
-  ],
-  "include": [
-    "src/**/*.d.ts"
-  ]
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "downlevelIteration": true,
+    "importHelpers": true,
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "target": "es2015",
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["es2017", "dom"],
+    "module": "es2020",
+
+  }
 }
