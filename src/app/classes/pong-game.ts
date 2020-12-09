@@ -1,7 +1,7 @@
-import { Ball } from './ball';
-import { Boundaries } from './boundaries';
-import { Paddle } from './paddle';
-import { ControlState } from './control-state';
+import { Ball } from "./ball";
+import { Boundaries } from "./boundaries";
+import { Paddle } from "./paddle";
+import { ControlState } from "./control-state";
 
 export class PongGame {
   public ball: Ball;
