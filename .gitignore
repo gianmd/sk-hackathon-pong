@@ -2,12 +2,13 @@
 
 # compiled output
 /dist
-/dist-server
 /tmp
 /out-tsc
+/src/environments/version.ts
+version-output.json
 
 # dependencies
-/node_modules
+node_modules
 
 # IDEs and editors
 /.idea
@@ -31,12 +32,9 @@
 /coverage
 /libpeerconnection.log
 npm-debug.log
-yarn-error.log
 testem.log
 /typings
-*.orig
 .firebase
-version.ts
 
 # e2e
 /e2e/*.js
@@ -45,3 +43,16 @@ version.ts
 # System Files
 .DS_Store
 Thumbs.db
+
+# Firebase Creds
+firebase-creds/
+
+# Mockups
+_assets
+
+functions/lib
+functions/.runtimeconfig.json
+output
+.env
+docker-scripts/dist/
+

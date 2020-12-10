@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "sk-pong"
+  },
+  "targets": {
+    "sk-pong": {
+      "hosting": {
+        "angular-pong": [
+          "sk-pong"
+        ]
+      }
+    }
   }
 }

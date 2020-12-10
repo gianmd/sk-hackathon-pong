@@ -1,1 +1,4 @@
-<canvas #PongCanvas width="{{width}}" height="{{height}}"></canvas>
+<canvas #PongCanvas width="{{ width }}" height="{{ height }}"></canvas>
+
+{{ controlState | json }}
+{{ item$ | async | json }}

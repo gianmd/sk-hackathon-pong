@@ -3,37 +3,39 @@ import {
   OnInit,
   ViewChild,
   ElementRef,
-  HostListener,
-} from "@angular/core";
-import { Controls } from "../enums/controls";
-import { PongGame } from "../classes/pong-game";
-import { Boundaries } from "../classes/boundaries";
-import { ControlState } from "../classes/control-state";
+  HostListener
+} from '@angular/core';
+import { Controls } from '../enums/controls';
+import { PongGame } from '../classes/pong-game';
+import { Boundaries } from '../classes/boundaries';
+import { ControlState } from '../classes/control-state';
+import { AngularFireDatabase } from '@angular/fire/database';
 
 @Component({
-  selector: "pong",
-  templateUrl: "./pong.component.html",
-  styleUrls: ["./pong.component.scss"],
+  selector: 'pong',
+  templateUrl: './pong.component.html',
+  styleUrls: ['./pong.component.scss']
 })
 export class PongGameComponent implements OnInit {
-  @ViewChild("PongCanvas", { static: true }) canvasElement: ElementRef;
+  @ViewChild('PongCanvas', { static: true }) canvasElement: ElementRef;
 
   public width = 800;
   public height = 600;
+  public item$;
 
   private context: CanvasRenderingContext2D;
   private pongGame: PongGame;
   private ticksPerSecond = 60;
 
-  private controlState: ControlState;
+  public controlState: ControlState;
 
-  constructor() {
+  constructor(private afDatabase: AngularFireDatabase) {
     this.pongGame = new PongGame(this.height, this.width);
     this.controlState = { upPressed: false, downPressed: false };
   }
 
   ngOnInit() {
-    this.context = this.canvasElement.nativeElement.getContext("2d");
+    this.context = this.canvasElement.nativeElement.getContext('2d');
     this.renderFrame();
 
     // Game model ticks 60 times per second. Doing this keeps same game speed
@@ -47,18 +49,18 @@ export class PongGameComponent implements OnInit {
   renderFrame(): void {
     // Only run if game still going
     if (this.pongGame.gameOver()) {
-      this.context.font = "30px Arial";
-      this.context.fillText("Game Over!", 50, 50);
-      setTimeout(() => location.reload(), 500);
+      this.context.font = '30px Arial';
+      this.context.fillText('Game Over!', 50, 50);
+
       return;
     }
 
     // Draw background
-    this.context.fillStyle = "rgb(0,0,0)";
+    this.context.fillStyle = 'rgb(0,0,0)';
     this.context.fillRect(0, 0, this.width, this.height);
 
     // Set to white for game objects
-    this.context.fillStyle = "rgb(255,255,255)";
+    this.context.fillStyle = 'rgb(255,255,255)';
 
     let bounds: Boundaries;
 
@@ -96,7 +98,7 @@ export class PongGameComponent implements OnInit {
     window.requestAnimationFrame(() => this.renderFrame());
   }
 
-  @HostListener("window:keydown", ["$event"])
+  @HostListener('window:keydown', ['$event'])
   keyUp(event: KeyboardEvent) {
     if (event.keyCode === Controls.Up) {
       this.controlState.upPressed = true;
@@ -106,7 +108,7 @@ export class PongGameComponent implements OnInit {
     }
   }
 
-  @HostListener("window:keyup", ["$event"])
+  @HostListener('window:keyup', ['$event'])
   keyDown(event: KeyboardEvent) {
     if (event.keyCode === Controls.Up) {
       this.controlState.upPressed = false;
