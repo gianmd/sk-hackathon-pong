@@ -9,10 +9,5 @@ import { LoginNameComponent } from './shared/login-name/login-name.component';
 })
 export class AppComponent implements OnInit {
   constructor(private matDialog: MatDialog) {}
-  ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
-    // Check if user loggedIn
-    this.matDialog.open(LoginNameComponent);
-  }
+  ngOnInit(): void {}
 }

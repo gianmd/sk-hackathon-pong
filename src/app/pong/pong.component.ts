@@ -28,6 +28,7 @@ export class PongGameComponent implements OnInit {
   private ticksPerSecond = 60;
 
   public controlState: ControlState;
+  public enemyControlState: ControlState;
 
   constructor(private afDatabase: AngularFireDatabase) {
     this.pongGame = new PongGame(this.height, this.width);
@@ -40,8 +41,9 @@ export class PongGameComponent implements OnInit {
 
     // Game model ticks 60 times per second. Doing this keeps same game speed
     // on higher FPS environments.
+
     setInterval(
-      () => this.pongGame.tick(this.controlState),
+      () => this.pongGame.tick(this.controlState, this.enemyControlState),
       1 / this.ticksPerSecond
     );
   }
@@ -100,20 +102,21 @@ export class PongGameComponent implements OnInit {
 
   @HostListener('window:keydown', ['$event'])
   keyUp(event: KeyboardEvent) {
-    if (event.keyCode === Controls.Up) {
+    if (event.key === 'ArrowUp') {
       this.controlState.upPressed = true;
     }
-    if (event.keyCode === Controls.Down) {
+
+    if (event.key === 'ArrowDown') {
       this.controlState.downPressed = true;
     }
   }
 
   @HostListener('window:keyup', ['$event'])
   keyDown(event: KeyboardEvent) {
-    if (event.keyCode === Controls.Up) {
+    if (event.key === 'ArrowUp') {
       this.controlState.upPressed = false;
     }
-    if (event.keyCode === Controls.Down) {
+    if (event.key === 'ArrowDown') {
       this.controlState.downPressed = false;
     }
   }

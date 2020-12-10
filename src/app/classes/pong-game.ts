@@ -1,7 +1,7 @@
-import { Ball } from "./ball";
-import { Boundaries } from "./boundaries";
-import { Paddle } from "./paddle";
-import { ControlState } from "./control-state";
+import { Ball } from './ball';
+import { Boundaries } from './boundaries';
+import { Paddle } from './paddle';
+import { ControlState } from './control-state';
 
 export class PongGame {
   public ball: Ball;
@@ -26,11 +26,11 @@ export class PongGame {
     this.playerPaddle = new Paddle(100, 20, 1.5, { x: 50, y: height / 2 });
     this.enemyPaddle = new Paddle(100, 20, 0.8, {
       x: width - 50,
-      y: height / 2,
+      y: height / 2
     });
   }
 
-  tick(controlState: ControlState) {
+  tick(controlState: ControlState, enemyControlState: ControlState) {
     this.ball.move();
 
     // Set acceleration, move player paddle based on input
@@ -114,11 +114,22 @@ export class PongGame {
 
   gameOver(): boolean {
     const collisionBoundaries = this.ball.getCollisionBoundaries();
+
+    if (this.ball.getCollisionBoundaries().left <= 0) {
+      console.log('You Lost');
+    }
+
+    if (this.ball.getCollisionBoundaries().right >= this.width) {
+      console.log('He Lost');
+    }
+
     if (
       this.ball.getCollisionBoundaries().left <= 0 ||
       this.ball.getCollisionBoundaries().right >= this.width
-    )
+    ) {
       return true;
-    else return false;
+    } else {
+      return false;
+    }
   }
 }
