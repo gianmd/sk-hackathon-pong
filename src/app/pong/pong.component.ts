@@ -5,14 +5,15 @@ import {
   ElementRef,
   HostListener
 } from '@angular/core';
+import { AngularFireDatabase } from '@angular/fire/database';
+
 import { Controls } from '../enums/controls';
 import { PongGame } from '../classes/pong-game';
 import { Boundaries } from '../classes/boundaries';
 import { ControlState } from '../classes/control-state';
-import { AngularFireDatabase } from '@angular/fire/database';
 
 @Component({
-  selector: 'pong',
+  selector: 'app-pong',
   templateUrl: './pong.component.html',
   styleUrls: ['./pong.component.scss']
 })
